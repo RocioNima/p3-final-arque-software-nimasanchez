@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: Taxi Service API
+  version: "1.0"
+servers:
+  - url: http://localhost:8080
+paths:
+  /report:
+    post:
+      summary: Recibe informes de viajes del día anterior
+      description: Envía los datos de los viajes del día anterior al repositorio.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reportData:
+                  type: string
+                  description: Datos del viaje en formato 'Fecha|hora|dirección origen|dirección destino'
+                  example: "01-12-2023|11:45 a.m.|Av. España nro. 1125|Av. América Sur nro. 1425"
+      responses:
+        '200':
+          description: Informe recibido con éxito
+        '400':
+          description: Datos del informe inválidos
